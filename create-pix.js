@@ -5,14 +5,14 @@ import { QrCodePix } from 'qrcode-pix';
 export default async function handler(req, res) {
   const { amount, name, message } = req.query;
 
-  const qrCodePix = QrCodePix({
-    version: '01',
-    key: '48567777852', // chave Pix do recebedor
-    name: name || 'Luiz Claudio Dias dos Santos Filho',
-    city: 'SANTOS',
-    amount: parseFloat(amount) || 0,
-    message: message || 'Pagamento via site'
-  });
+ const qrCodePix = QrCodePix({
+  version: '01',
+  key: '48567777852', // sua chave Pix real
+  name: 'Luiz Claudio Dias dos Santos Filho', // nome do titular da chave
+  city: 'SANTOS',
+  amount: parseFloat(amount) || 0, // valor do pedido
+  message: message || 'Pagamento via site'
+});
 
   const buffer = await qrCodePix.toImageBuffer();
   const base64 = buffer.toString('base64');
