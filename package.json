@@ -1,0 +1,7 @@
+{
+  "name": "pedido-pix",
+  "version": "1.0.0",
+  "dependencies": {
+    "qrcode-pix": "^1.0.0"
+  }
+}
