@@ -7,8 +7,8 @@ export default async function handler(req, res) {
 
   const qrCodePix = QrCodePix({
     version: '01',
-    key: 'sua-chave-pix-aqui', // chave Pix do recebedor
-    name: name || 'Seu Nome',
+    key: '48567777852', // chave Pix do recebedor
+    name: name || 'Luiz Claudio Dias dos Santos Filho',
     city: 'SANTOS',
     amount: parseFloat(amount) || 0,
     message: message || 'Pagamento via site'
