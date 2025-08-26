@@ -8,7 +8,7 @@ export default async function handler(req, res) {
 
   const qrCodePix = QrCodePix({
     version: '01',
-    key: '48567777852',
+    key: '48567777852', // sua chave Pix real
     name: name || 'Luiz Claudio Dias dos Santos Filho',
     city: 'SANTOS',
     amount: parseFloat(amount) || 0,
@@ -19,6 +19,6 @@ export default async function handler(req, res) {
   const base64 = buffer.toString('base64');
 
   res.status(200).json({
-    qrCode: `data:image/png;base64,${base64}`
-  });
+  qrCode: `data:image/png;base64,${base64}`
+});
 }
