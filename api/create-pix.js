@@ -1,4 +1,4 @@
-// api/create-pix.js
+
 return host ? `${proto}://${host}` : undefined;
 }
 
