@@ -16,8 +16,7 @@ module.exports = async function handler(req, res) {
       message: message || 'Pedido via site'
     });
 
-    const buffer = await qrCodePix.toImageBuffer();
-    const base64 = buffer.toString('base64');
+    const base64 = await qrCodePix.toBase64();
 
     res.status(200).json({
       qrCode: `data:image/png;base64,${base64}`
