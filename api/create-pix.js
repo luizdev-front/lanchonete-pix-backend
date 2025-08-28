@@ -1,4 +1,4 @@
-const { QrCodePix } = require('qrcode-pix');
+const QRCode = require('qrcode');
 
 module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -7,22 +7,15 @@ module.exports = async function handler(req, res) {
   const { amount, name, message } = req.query;
 
   try {
-    const qrCodePix = QrCodePix({
-      version: '01',
-      key: '48567777852',
-      name: name || 'Luiz Claudio Dias dos Santos Filho',
-      city: 'SANTOS',
-      amount: parseFloat(amount) || 0,
-      message: message || 'Pedido via site'
-    });
+    const pixCode = `00020126360014BR.GOV.BCB.PIX011148567777852520400005303986540${amount}5802BR5925${name || 'Luiz Claudio'}6009SANTOS62070503***6304`; // exemplo de código Pix
 
-    const base64 = await qrCodePix.toBase64();
+    const base64 = await QRCode.toDataURL(pixCode);
 
     res.status(200).json({
-      qrCode: `data:image/png;base64,${base64}`
+      qrCode: base64
     });
   } catch (err) {
     console.error('Erro ao gerar QR Code:', err);
-    res.status(500).json({ error: 'Erro interno ao gerar o code' });
+    res.status(500).json({ error: 'Erro interno ao gerar o QR Code' });
   }
 };
